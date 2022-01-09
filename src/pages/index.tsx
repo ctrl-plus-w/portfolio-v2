@@ -13,6 +13,8 @@ import Text from '@element/Text';
 import Sparkles from '@icon/Sparkles';
 
 import Cards from '@module/Cards';
+import { CARDS } from '@constant/CARDS';
+import Card from '@module/Card';
 
 const Home: NextPage = () => {
   const waitingScreen = createRef<HTMLDivElement>();
@@ -106,9 +108,27 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      <section id='projects' className='flex flex-col'></section>
+      <section id='projects' className='flex flex-col px-32 py-16'>
+        <Title sep>Selected projects</Title>
 
-      <section id='contact-me' className='flex flex-col'></section>
+        <div className='flex flex-row gap-16'>
+          {CARDS.map(({ title, body, link }) => {
+            return <Card {...{ title, body, link }} key={title} icons />;
+          })}
+        </div>
+      </section>
+
+      <section id='contact-me' className='flex flex-col px-32 pt-16 pb-32'>
+        <Title sep>Contact me</Title>
+
+        <Text big>
+          <span className='opacity-50'>My name is, </span>
+          Lukas Laudrain<span className='opacity-50'>, you can call me at</span> +33 7 66 32 44 38{' '}
+          <span className='opacity-50'>or send an email to</span> lukas.ldrn@gmail.com .<br />
+          <span className='opacity-50'> You can also check my github :</span>
+          https://github.com/ctrl-plus-w <span className='opacity-50'>.</span>
+        </Text>
+      </section>
     </div>
   );
 };
