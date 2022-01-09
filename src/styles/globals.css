@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,5 +9,19 @@
   body,
   #__next {
     height: 100%;
+  }
+
+  body {
+    @apply bg-dark-blue;
+
+    background-image: url('../../public/grain_background.png');
+    background-size: cover;
+    background-repeat: repeat-y;
+  }
+}
+
+@layer components {
+  .absolute-center {
+    @apply absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2;
   }
 }
