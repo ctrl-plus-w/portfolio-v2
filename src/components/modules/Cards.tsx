@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
 import type { Dispatch, SetStateAction } from 'react';
@@ -7,7 +7,14 @@ import React from 'react';
 
 import Card from '@module/Card';
 
+import Text from '@element/Text';
+
+import ArrowLeft from '@icon/ArrowLeft';
+import ArrowRight from '@icon/ArrowRight';
+
 import { CARDS } from '@constant/CARDS';
+
+type CardIndexes = 1 | 2 | 3;
 
 interface IProps {
   loaded: boolean;
@@ -21,24 +28,26 @@ const Cards = ({ setLoaded }: IProps) => {
 
   const timeline = useRef<gsap.core.Timeline>();
 
+  const [activeCard, setActiveCard] = useState<CardIndexes>(1);
+
   useEffect(() => {
     if (!card1.current || !card2.current || !card3.current) return;
 
     // List of styles to override
     const styleOverrides: { [index: string]: string }[] = [
       {
-        left: 'calc(50% - 3rem)',
-        top: 'calc(50% + 5rem)',
+        left: 'calc(50% - 6rem)',
+        top: 'calc(50% + 6rem)',
         transform: 'translate(-50%, -50%) rotate(-11deg)',
       },
       {
-        left: 'calc(50% + 8rem)',
+        left: 'calc(50% + 6rem)',
         top: '50%',
         transform: 'translate(-50%, -50%) rotate(4deg)',
       },
       {
-        left: '50%',
-        top: 'calc(50% - 4rem)',
+        left: 'calc(50% - 2.5rem)',
+        top: 'calc(50% - 4.5rem)',
         transform: 'translate(-50%, -50%) rotate(-5deg)',
       },
     ];
@@ -77,7 +86,17 @@ const Cards = ({ setLoaded }: IProps) => {
     setLoaded(true);
   }, [card1, card2, card3, setLoaded]);
 
-  const updateCard = async (cardIndex: 1 | 2 | 3) => {
+  const getNextCard = (previousCard: CardIndexes): CardIndexes => {
+    if (previousCard === 3) return 1;
+    return (previousCard + 1) as CardIndexes;
+  };
+
+  const getPreviousCard = (previousCard: CardIndexes): CardIndexes => {
+    if (previousCard === 1) return 3;
+    return (previousCard - 1) as CardIndexes;
+  };
+
+  const updateCard = async (cardIndex: CardIndexes) => {
     if (!card1.current || !card2.current || !card3.current) return;
 
     // Check if the timeline exists
@@ -101,13 +120,29 @@ const Cards = ({ setLoaded }: IProps) => {
     }
 
     await timeline.current.reverse();
+
+    setActiveCard(cardIndex);
   };
 
   return (
-    <div className='relative flex flex-col w-full items-center justify-center gap-5'>
+    <div className='relative flex flex-col w-full items-center justify-center gap-5 outline-1'>
+      <div className='absolute-center flex gap-[40rem]'>
+        <button className='p-6' onClick={() => updateCard(getPreviousCard(activeCard))}>
+          <ArrowLeft height={24} />
+        </button>
+
+        <button className='p-6' onClick={() => updateCard(getNextCard(activeCard))}>
+          <ArrowRight height={24} />
+        </button>
+      </div>
+
       <Card {...CARDS[2]} className='absolute-center z-10' ref={card3} onClick={() => updateCard(3)} />
       <Card {...CARDS[1]} className='absolute-center z-10' ref={card2} onClick={() => updateCard(2)} />
       <Card {...CARDS[0]} className='absolute-center z-10' ref={card1} onClick={() => updateCard(1)} />
+
+      <Text className='absolute left-1/2 bottom-24' color='beige'>
+        {activeCard} / 3
+      </Text>
     </div>
   );
 };
