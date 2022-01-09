@@ -59,7 +59,7 @@ const Cursor: FC = () => {
 
   return (
     <div
-      className='fixed z-50 w-16 h-16 transform -translate-x-1/2 -translate-y-1/2 border border-gray-600 rounded-full invisible'
+      className='fixed z-50 w-16 h-16 transform -translate-x-1/2 -translate-y-1/2 border border-gray-600 rounded-full invisible pointer-events-none'
       ref={cursor}
     ></div>
   );
