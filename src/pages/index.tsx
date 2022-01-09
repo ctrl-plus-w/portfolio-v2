@@ -71,7 +71,40 @@ const Home: NextPage = () => {
         <Cards loaded={loaded} setLoaded={setLoaded} />
       </section>
 
-      <section id='about-me' className='flex flex-col'></section>
+      <section id='about-me' className='flex flex-row px-32 py-16 gap-4'>
+        <div className='flex flex-col w-[calc(4/7*100%)]'>
+          <Title sep>Who am I ?</Title>
+
+          <Text className='tracking-wide'>
+            Hey, my name is Lukas. I’m a French student.
+            <br />
+            <br />
+            I’m a developer, designer and a challenge lover. I started programming around 2018. I am currently in high school where I have made most
+            of my biggest project, so that makes me a self-taught developer. I always loved computer sciences and challenge solving. During my
+            learning path, I went from static html and css pages to complex SaaS applications. I now know many technologies and am learning many
+            others.
+            <br />
+            <br />
+            By making complex projects, I acquired some experience and I now focus on making clean code with a scalable structure.
+          </Text>
+        </div>
+
+        <div className='flex flex-col w-[calc(3/7*100%)]'>
+          <Title sep>My stack</Title>
+
+          <Text className='tracking-wide'>
+            My main front stack is Nextjs, TailwindCSS with Axios. On another hand, my back-end stack is Express or GraphQL combined with a SQL
+            database managed by Sequelize.
+            <br />
+            <br />
+            My main language is Typescript but I used a lot Javascript before. I obviously master HTML and CSS.
+            <br />
+            <br />
+            The list of technologies listed before is non-exhaustive, also, I the technologies used are not important to me since I know the
+            languages.
+          </Text>
+        </div>
+      </section>
 
       <section id='projects' className='flex flex-col'></section>
 
