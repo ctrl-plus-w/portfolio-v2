@@ -1,5 +1,7 @@
 import React, { memo } from 'react';
 
+import clsx from 'clsx';
+
 interface IProps {
   className?: string;
 
@@ -10,7 +12,7 @@ interface IProps {
 }
 
 const BackgroundLine = ({ className, width = 'auto', height = 'auto', id }: IProps) => {
-  const props = { width, height, className, fill: 'none', xmlns: 'http://www.w3.org/2000/svg' };
+  const props = { width, height, className: clsx('-z-10', className), fill: 'none', xmlns: 'http://www.w3.org/2000/svg' };
 
   switch (id) {
     case 2:
