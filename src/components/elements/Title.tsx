@@ -6,25 +6,24 @@ interface IProps {
   className?: string;
   children?: React.ReactNode;
 
-  color?: 'beige' | 'beige-100' | 'beige-200';
+  color?: BEIGE;
   level?: 1 | 2;
+
+  type?: 'mono' | 'sans' | 'sans-serif';
 
   sep?: boolean;
 }
 
-// Force import the text colors
-const _colors = 'text-beige text-beige-100 text-beige-200';
-
-const Title = ({ className, children, sep, color = 'beige', level = 1 }: IProps) => {
+const Title = ({ className, children, sep, type = 'sans', color = 'beige', level = 1 }: IProps) => {
   const getElement = useCallback(() => {
     switch (level) {
       case 2:
-        return <h2 className={clsx('font-sans font-medium text-base', `text-${color}`, className)}>{children}</h2>;
+        return <h2 className={clsx(`font-${type} font-medium text-base text-${color}`, className)}>{children}</h2>;
 
       default:
-        return <h1 className={clsx('font-sans font-bold text-3xl', `text-${color}`, className)}>{children}</h1>;
+        return <h1 className={clsx(`font-${type} font-bold text-3xl text-${color}`, className)}>{children}</h1>;
     }
-  }, [color, className, level, children]);
+  }, [color, className, level, children, type]);
 
   return (
     <>
