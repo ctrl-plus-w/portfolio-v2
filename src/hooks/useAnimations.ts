@@ -110,6 +110,9 @@ const useAnimations = (loaded: boolean, cb: () => void): void => {
 
     return () => {
       heroSectionTl.kill();
+      aboutMeSectionTl.kill();
+      projectsSectionTl.kill();
+      contactMeSectionTl.kill();
     };
   }, [cb, loaded]);
 };
