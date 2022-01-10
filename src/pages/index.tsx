@@ -24,7 +24,7 @@ const Home: NextPage = () => {
 
   const container = useRef<HTMLDivElement>(null);
 
-  useEffect(() => window.scrollTo({ top: 0 }));
+  useEffect(() => window.scrollTo({ top: 0 }), []);
 
   useSmoothScroll(container);
 
@@ -66,9 +66,11 @@ const Home: NextPage = () => {
 
       <section id='about-me' className='flex flex-row px-32 py-32 gap-4'>
         <div className='flex flex-col w-[calc(4/7*100%)]'>
-          <Title sep>Who am I ?</Title>
+          <Title className='title' sep>
+            Who am I ?
+          </Title>
 
-          <Text className='tracking-wide'>
+          <Text className='body tracking-wide'>
             Hey, my name is Lukas. I’m a French student.
             <br />
             <br />
@@ -83,9 +85,11 @@ const Home: NextPage = () => {
         </div>
 
         <div className='flex flex-col w-[calc(3/7*100%)]'>
-          <Title sep>My stack</Title>
+          <Title className='title' sep>
+            My stack
+          </Title>
 
-          <Text className='tracking-wide'>
+          <Text className='body tracking-wide'>
             My main front stack is Nextjs, TailwindCSS with Axios. On another hand, my back-end stack is Express or GraphQL combined with a SQL
             database managed by Sequelize.
             <br />
@@ -100,9 +104,11 @@ const Home: NextPage = () => {
       </section>
 
       <section id='projects' className='flex flex-col px-32 py-32'>
-        <Title sep>Selected projects</Title>
+        <Title className='title' sep>
+          Selected projects
+        </Title>
 
-        <div className='flex flex-row gap-16'>
+        <div className='cards flex flex-row gap-16'>
           {CARDS.map(({ title, body, link }) => {
             return <Card {...{ title, body, link }} key={title} icons />;
           })}
@@ -110,13 +116,15 @@ const Home: NextPage = () => {
       </section>
 
       <section id='contact-me' className='flex flex-col px-32 pt-16 pb-32'>
-        <Title sep>Contact me</Title>
+        <Title className='title' sep>
+          Contact me
+        </Title>
 
-        <Text big>
+        <Text className='body' big>
           <span className='opacity-50'>My name is, </span>
           Lukas Laudrain<span className='opacity-50'>, you can call me at</span> +33 7 66 32 44 38{' '}
           <span className='opacity-50'>or send an email to</span> lukas.ldrn@gmail.com .<br />
-          <span className='opacity-50'> You can also check my github :</span>
+          <span className='opacity-50'> You can also check my github : </span>
           https://github.com/ctrl-plus-w <span className='opacity-50'>.</span>
         </Text>
       </section>
