@@ -1,7 +1,6 @@
 import type { NextPage } from 'next';
 
-import { useEffect, useState } from 'react';
-import { gsap } from 'gsap';
+import { useEffect, useRef, useState } from 'react';
 
 import Head from 'next/head';
 
@@ -15,6 +14,7 @@ import Text from '@element/Text';
 
 import Sparkles from '@icon/Sparkles';
 
+import useSmoothScroll from '@hook/useSmoothScroll';
 import useAnimations from '@hook/useAnimations';
 
 import { CARDS } from '@constant/CARDS';
@@ -22,10 +22,16 @@ import { CARDS } from '@constant/CARDS';
 const Home: NextPage = () => {
   const [loaded, setLoaded] = useState(false);
 
-  useAnimations(() => setLoaded(true));
+  const container = useRef<HTMLDivElement>(null);
+
+  useEffect(() => window.scrollTo({ top: 0 }));
+
+  useSmoothScroll(container);
+
+  useAnimations(loaded, () => setLoaded(true));
 
   return (
-    <div className='relative'>
+    <div className='fixed' ref={container}>
       {/* ---------- PAGE SETTINGS --------- */}
       <Head>
         <title>Lukas Laudrain</title>
