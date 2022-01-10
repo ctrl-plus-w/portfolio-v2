@@ -1,10 +1,17 @@
-import React, { ForwardedRef, forwardRef, MouseEvent, MouseEventHandler } from 'react';
+import { forwardRef } from 'react';
+
+import type { ForwardedRef } from 'react';
+
+import React from 'react';
 import clsx from 'clsx';
+
 import Github from '@icon/Github';
 import Folder from '@icon/Folder';
 
 interface IProps {
   className?: string;
+
+  htmlId?: string;
 
   title: string;
   body: string;
@@ -26,7 +33,7 @@ const _colors3 = 'bg-[#B9AF8F] bg-[#3F3927] text-[#3F3927] text-[#3E3929]';
 
 const Card = forwardRef(
   (
-    { body, title, backgroundColor = '#F0E9CE', bodyColor = '#80785D', titleColor = '#6D633F', className, onClick, icons, link }: IProps,
+    { body, title, backgroundColor = '#F0E9CE', bodyColor = '#80785D', titleColor = '#6D633F', className, onClick, icons, link, htmlId }: IProps,
     ref: ForwardedRef<HTMLDivElement>
   ) => {
     const openLink = () => {
@@ -44,6 +51,7 @@ const Card = forwardRef(
       <div
         className={clsx(`flex flex-col gap-[18px] p-6 rounded-[4px] font-mono w-96 max-w-sm bg-[${backgroundColor}] cursor-pointer`, className)}
         onClick={handleClick}
+        id={htmlId}
         ref={ref}
       >
         {icons && (

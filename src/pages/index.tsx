@@ -1,9 +1,12 @@
 import type { NextPage } from 'next';
 
-import { createRef, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 
 import Head from 'next/head';
+
+import Cards from '@module/Cards';
+import Card from '@module/Card';
 
 import BackgroundLine from '@element/BackgroundLine';
 import TalkButton from '@element/TalkButton';
@@ -12,34 +15,78 @@ import Text from '@element/Text';
 
 import Sparkles from '@icon/Sparkles';
 
-import Cards from '@module/Cards';
 import { CARDS } from '@constant/CARDS';
-import Card from '@module/Card';
 
 const Home: NextPage = () => {
-  const waitingScreen = createRef<HTMLDivElement>();
-
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    if (!loaded || !waitingScreen.current) return;
+    let tl = gsap.timeline({ delay: 1, paused: true });
 
-    let tl = gsap.timeline();
+    // ------- UPDATE THE BACKGROUND LINES -------
+    tl.fromTo(
+      '#line1 > path, #line2 > path',
+      {
+        strokeDasharray: '1000px',
+        strokeDashoffset: '1000px',
+        opacity: 1,
+      },
+      {
+        strokeDashoffset: '0',
+        opacity: 0.02,
+        duration: 1.5,
+      }
+    );
 
-    tl.to(waitingScreen.current, {
-      opacity: '0',
-      duration: 0.3,
-    }).to(waitingScreen.current, {
-      pointerEvents: 'none',
-      duration: 0,
+    // ------- UPDATE THE HERO SECTION TEXT -------
+    tl.addLabel('wave1', '>');
+
+    // Update the main heading
+    tl.fromTo('#heading1', { opacity: 0, y: 20 }, { opacity: 1, y: 0 }).from('#heading1 + .separator', { width: 0 }, 'wave1');
+
+    // Update the hero section headline
+    tl.fromTo('#healine1', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1 }, 'wave1');
+
+    // Update the credits
+    tl.fromTo('#credit', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1 }, 'wave1');
+
+    // ------- UPDATE THE LET'S TALK BUTTON -------
+    tl.addLabel('wave2', '<');
+
+    // Update the "Let's talk button"
+    tl.fromTo('#contactBtn > p', { opacity: 0 }, { opacity: 1 }, 'wave2')
+      .fromTo('#contactBtn > .letter-icon', { opacity: 0, x: 16, y: 16, rotation: 45 }, { x: 0, y: 0, opacity: 1, rotation: 0 }, 'wave2')
+      .fromTo(
+        '#contactBtn > svg > path',
+        { strokeDasharray: '250px', strokeDashoffset: '-250px' },
+        { strokeDashoffset: '0px', duration: 2 },
+        'wave2'
+      );
+
+    // ------- UPDATE CARDS -------
+    tl.addLabel('wave3', '>-25%');
+
+    // Update the arrows
+    tl.fromTo('#cards > .buttons > button:nth-child(1)', { opacity: 0, x: 20 }, { opacity: 1, x: 0 }, 'wave3');
+    tl.fromTo('#cards > .buttons > button:nth-child(2)', { opacity: 0, x: -20 }, { opacity: 1, x: 0 }, 'wave3');
+
+    // Update the index indicator
+    tl.fromTo('#cards > p', { opacity: 0, y: 20 }, { opacity: 1, y: 0 }, 'wave3');
+
+    // Update the cards
+    tl.fromTo('#card1', { opacity: 0, x: -40, y: -40, rotation: -30 }, { opacity: 1, x: 0, y: 0, rotation: -11 }, 'wave3')
+      .fromTo('#card2', { opacity: 0, x: 40, y: 40, rotation: 15 }, { opacity: 1, x: 0, y: 0, rotation: 4 }, '<-25%')
+      .fromTo('#card3', { opacity: 0, x: -20, y: -20, rotation: -16 }, { opacity: 1, x: 0, y: 0, rotation: -5 }, '<-25%');
+
+    tl.play().then(() => {
+      console.log('done');
+      setLoaded(true);
     });
-
-    tl.play();
 
     return () => {
       tl.kill();
     };
-  }, [loaded, waitingScreen]);
+  }, []);
 
   return (
     <div className='relative'>
@@ -48,29 +95,31 @@ const Home: NextPage = () => {
         <title>Lukas Laudrain</title>
       </Head>
 
-      {/* ---------- WAITING SCREEN -------- */}
-      <div className='fixed z-40 w-screen h-screen bg-dark-blue' ref={waitingScreen}></div>
-
       {/* ---------- LINES ----------------- */}
-      <BackgroundLine width='50%' id={1} className='absolute top-0 left-0' />
-      <BackgroundLine width='40%' id={2} className='absolute top-[20vh] right-0' />
+      <BackgroundLine width='50%' id={1} className='absolute top-0 left-0' htmlId='line1' />
+      <BackgroundLine width='40%' id={2} className='absolute top-[20vh] right-0' htmlId='line2' />
 
       {/* ---------- HERO SECTION ---------- */}
       <section id='hero-section' className='flex flex-row h-screen px-32 py-16'>
         <div className='flex flex-col mt-32'>
-          <Title sep>Lukas Laudrain</Title>
-          <Text big>
+          <Title htmlId='heading1' sep>
+            Lukas Laudrain
+          </Title>
+
+          <Text htmlId='healine1' big>
             I am the french <b>full-stack developer</b>,<br /> that will help you <Sparkles />
             <b>step up</b>
             <Sparkles /> your business
           </Text>
 
-          <TalkButton className='mt-12' onClick={() => alert()} />
+          <TalkButton htmlId='contactBtn' className='mt-12' onClick={() => alert()} />
 
-          <Text className='mt-auto'>© 2022 Lukas Laudrain</Text>
+          <Text htmlId='credit' className='mt-auto'>
+            © 2022 Lukas Laudrain
+          </Text>
         </div>
 
-        <Cards loaded={loaded} setLoaded={setLoaded} />
+        <Cards loaded={loaded} />
       </section>
 
       <section id='about-me' className='flex flex-row px-32 py-32 gap-4'>

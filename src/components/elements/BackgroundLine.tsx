@@ -1,5 +1,6 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 
+import React from 'react';
 import clsx from 'clsx';
 
 interface IProps {
@@ -9,10 +10,12 @@ interface IProps {
   height?: string | number;
 
   id: number;
+
+  htmlId?: string;
 }
 
-const BackgroundLine = ({ className, width = 'auto', height = 'auto', id }: IProps) => {
-  const props = { width, height, className: clsx('-z-10', className), fill: 'none', xmlns: 'http://www.w3.org/2000/svg' };
+const BackgroundLine = ({ className, width = 'auto', height = 'auto', id, htmlId }: IProps) => {
+  const props = { width, height, id: htmlId, className: clsx('-z-10', className), fill: 'none', xmlns: 'http://www.w3.org/2000/svg' };
 
   switch (id) {
     case 2:

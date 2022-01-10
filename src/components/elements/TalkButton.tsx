@@ -1,5 +1,6 @@
-import React, { MouseEvent } from 'react';
+import type { MouseEvent } from 'react';
 
+import React from 'react';
 import clsx from 'clsx';
 
 import Letter from '@icon/Letter';
@@ -7,12 +8,14 @@ import Letter from '@icon/Letter';
 interface IProps {
   className?: string;
 
+  htmlId?: string;
+
   onClick: (event: MouseEvent) => void | Promise<void>;
 }
 
-const TalkButton = ({ className, onClick }: IProps) => {
+const TalkButton = ({ className, htmlId, onClick }: IProps) => {
   return (
-    <button className={clsx('relative flex items-center justify-center w-[130px] cursor-pointer', className)} onClick={onClick}>
+    <button id={htmlId} className={clsx('relative flex items-center justify-center w-[130px] cursor-pointer', className)} onClick={onClick}>
       <svg width='auto' height='100%' viewBox='0 0 90 50' fill='none' xmlns='http://www.w3.org/2000/svg'>
         <path
           d='M88.3367 22.1848C91.9197 4.1803 77.7355 -3.8079 47.1733 4.07864C29.7091 8.58524 -2.42479 16.5913 0.982126 34.9595C3.74186 49.8385 39.5065 54.5 61.5065 40'

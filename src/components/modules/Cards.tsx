@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
-import type { Dispatch, SetStateAction } from 'react';
-
 import React from 'react';
 
 import Card from '@module/Card';
@@ -18,10 +16,9 @@ type CardIndexes = 1 | 2 | 3;
 
 interface IProps {
   loaded: boolean;
-  setLoaded: Dispatch<SetStateAction<boolean>>;
 }
 
-const Cards = ({ setLoaded }: IProps) => {
+const Cards = ({ loaded }: IProps) => {
   const card1 = useRef<HTMLDivElement>(null);
   const card2 = useRef<HTMLDivElement>(null);
   const card3 = useRef<HTMLDivElement>(null);
@@ -82,9 +79,7 @@ const Cards = ({ setLoaded }: IProps) => {
         'start'
       );
     }
-
-    setLoaded(true);
-  }, [card1, card2, card3, setLoaded]);
+  }, [card1, card2, card3]);
 
   const getNextCard = (previousCard: CardIndexes): CardIndexes => {
     if (previousCard === 3) return 1;
@@ -97,7 +92,7 @@ const Cards = ({ setLoaded }: IProps) => {
   };
 
   const updateCard = async (cardIndex: CardIndexes) => {
-    if (!card1.current || !card2.current || !card3.current) return;
+    if (!card1.current || !card2.current || !card3.current || !loaded) return;
 
     // Check if the timeline exists
     if (!timeline.current) return;
@@ -125,8 +120,8 @@ const Cards = ({ setLoaded }: IProps) => {
   };
 
   return (
-    <div className='relative flex flex-col w-full items-center justify-center gap-5 outline-1'>
-      <div className='absolute-center flex gap-[40rem]'>
+    <div className='relative flex flex-col w-full items-center justify-center gap-5 outline-1' id='cards'>
+      <div className='buttons absolute-center flex gap-[40rem]'>
         <button className='p-6' onClick={() => updateCard(getPreviousCard(activeCard))}>
           <ArrowLeft height={24} />
         </button>

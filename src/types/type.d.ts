@@ -6,5 +6,7 @@ interface ICard {
   titleColor: string;
   bodyColor: string;
 
+  htmlId?: string;
+
   link: string;
 }
