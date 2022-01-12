@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import Head from 'next/head';
 
+import ContactForm from '@module/ContactForm';
 import Cards from '@module/Cards';
 import Card from '@module/Card';
 
@@ -112,7 +113,7 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      <section id='projects' className='flex flex-col mx-32 py-32'>
+      <section id='projects' className='flex flex-col px-32 my-32'>
         <Title className='title' sep>
           Selected projects
         </Title>
@@ -124,18 +125,12 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      <section id='contact-me' className='flex flex-col px-32 mt-16 pb-32'>
+      <section id='contact-me' className='flex flex-col px-32 mt-16 mb-32'>
         <Title className='title' sep>
           Contact me
         </Title>
 
-        <Text className='body' big>
-          <span className='opacity-50'>My name is, </span>
-          Lukas Laudrain<span className='opacity-50'>, you can call me at</span> +33 7 66 32 44 38{' '}
-          <span className='opacity-50'>or send an email to</span> lukas.ldrn@gmail.com .<br />
-          <span className='opacity-50'> You can also check my github : </span>
-          https://github.com/ctrl-plus-w <span className='opacity-50'>.</span>
-        </Text>
+        <ContactForm />
       </section>
     </div>
   );
