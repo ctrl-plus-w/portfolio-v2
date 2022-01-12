@@ -43,7 +43,7 @@ const Home: NextPage = () => {
 
       {/* ---------- HERO SECTION ---------- */}
       <section id='hero-section' className='flex flex-row h-screen px-32 py-16'>
-        <div className='flex flex-col mt-32'>
+        <div className='flex flex-col items-start mt-32'>
           <Title htmlId='heading1' sep>
             Lukas Laudrain
           </Title>
