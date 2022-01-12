@@ -12,11 +12,12 @@ interface IProps {
   className?: string;
 
   htmlId?: string;
+  htmlType?: 'submit' | 'button';
 
   onClick: (event: MouseEvent) => void | Promise<void>;
 }
 
-const TalkButton = ({ className, htmlId, onClick }: IProps) => {
+const TalkButton = ({ className, htmlId, htmlType, onClick }: IProps) => {
   const ref = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const TalkButton = ({ className, htmlId, onClick }: IProps) => {
 
     const tl = gsap.timeline({ paused: true });
 
-    tl.to(svgPath, { strokeDashoffset: '250px', duration: 0.5 }, 'start').to(body, { scale: 1.2, rotation: '-10deg' }, '-=0.3');
+    tl.to(svgPath, { strokeDashoffset: '250px', duration: 0.5 }).to(body, { scale: 1.2, rotation: '-10deg' }, '-=0.3');
 
     const onMouseEnter = () => tl.play();
     const onMouseLeave = () => tl.reverse();
@@ -44,10 +45,17 @@ const TalkButton = ({ className, htmlId, onClick }: IProps) => {
   }, [ref]);
 
   return (
-    <button id={htmlId} className={clsx('relative flex items-center justify-center w-[130px] cursor-pointer', className)} onClick={onClick} ref={ref}>
+    <button
+      id={htmlId}
+      type={htmlType}
+      className={clsx('relative flex items-center justify-center w-[130px] cursor-pointer', className)}
+      onClick={onClick}
+      ref={ref}
+    >
       <svg width='auto' height='100%' viewBox='0 0 90 50' fill='none' xmlns='http://www.w3.org/2000/svg'>
         <path
           d='M88.3367 22.1848C91.9197 4.1803 77.7355 -3.8079 47.1733 4.07864C29.7091 8.58524 -2.42479 16.5913 0.982126 34.9595C3.74186 49.8385 39.5065 54.5 61.5065 40'
+          strokeDasharray='250px'
           stroke='#E4DCBF'
         />
       </svg>
