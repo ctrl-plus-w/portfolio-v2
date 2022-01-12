@@ -64,7 +64,7 @@ const Home: NextPage = () => {
         <Cards loaded={loaded} />
       </section>
 
-      <section id='about-me' className='flex flex-row px-32 py-32 gap-4'>
+      <section id='about-me' className='flex flex-row px-32 my-32 gap-4 '>
         <div className='flex flex-col w-[calc(4/7*100%)]'>
           <Title className='title' sep>
             Who am I ?
@@ -103,7 +103,7 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      <section id='projects' className='flex flex-col px-32 py-32'>
+      <section id='projects' className='flex flex-col mx-32 py-32'>
         <Title className='title' sep>
           Selected projects
         </Title>
@@ -115,7 +115,7 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      <section id='contact-me' className='flex flex-col px-32 pt-16 pb-32'>
+      <section id='contact-me' className='flex flex-col px-32 mt-16 pb-32'>
         <Title className='title' sep>
           Contact me
         </Title>

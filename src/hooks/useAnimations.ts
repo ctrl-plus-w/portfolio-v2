@@ -69,23 +69,27 @@ const useAnimations = (loaded: boolean, cb: () => void): void => {
 
     heroSectionTl.play().then(() => cb());
 
+    // ------- ABOUT ME SECTION -------
     let aboutMeSectionTl = gsap.timeline({
       scrollTrigger: {
         trigger: '#about-me',
         start: 'bottom bottom',
+        toggleActions: 'restart none none reverse',
       },
     });
 
     aboutMeSectionTl
       .addLabel('start')
-      .fromTo('#about-me .title', { y: 20, opacity: 0 }, { y: 0, opacity: 1 }, 'start')
-      .from('#about-me .title + .separator', { width: 0 }, 'start')
-      .fromTo('#about-me .body', { y: 20, opacity: 0 }, { y: 0, opacity: 1 }, 'start');
+      .fromTo('#about-me .title', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 1 }, 'start')
+      .from('#about-me .title + .separator', { width: 0, duration: 1 }, 'start')
+      .fromTo('#about-me .body', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 1 }, 'start');
 
+    // ------- PROJECTS SECTION -------
     let projectsSectionTl = gsap.timeline({
       scrollTrigger: {
         trigger: '#projects',
         start: 'bottom bottom',
+        toggleActions: 'restart none none reverse',
       },
     });
 
@@ -95,10 +99,12 @@ const useAnimations = (loaded: boolean, cb: () => void): void => {
       .from('#projects .title + .separator', { width: 0 }, 'start')
       .fromTo('#projects .cards > div', { x: 30, opacity: 0 }, { x: 0, opacity: 1 }, 'start');
 
+    // ------- CONTACT ME SECTION -------
     let contactMeSectionTl = gsap.timeline({
       scrollTrigger: {
         trigger: '#contact-me',
         start: 'center bottom',
+        toggleActions: 'restart none none reverse',
       },
     });
 
