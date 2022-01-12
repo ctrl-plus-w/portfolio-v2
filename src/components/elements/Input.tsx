@@ -27,7 +27,7 @@ const Input = ({ label, name, setValue, value, className, htmlId, maxLength, tex
   };
 
   return (
-    <label htmlFor={name} className={clsx(['border-b border-beige', className])} id={htmlId}>
+    <label htmlFor={name} className={clsx(['form-control border-b border-beige', className])} id={htmlId}>
       <div className='flex justify-between w-full'>
         <Text small>
           {label.toUpperCase()}
