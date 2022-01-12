@@ -114,21 +114,21 @@ const ContactForm = ({ className }: IProps) => {
       </form>
 
       <div className='flex flex-col gap-8 w-full h-full'>
-        <div>
+        <div className='info'>
           <Text className='font-semibold' big>
             EMAIL
           </Text>
           <Text>lukas.ldrn@gmail.com</Text>
         </div>
 
-        <div>
+        <div className='info'>
           <Text className='font-semibold' big>
             PHONE
           </Text>
           <Text>(+33) 7 66 32 44 38</Text>
         </div>
 
-        <div>
+        <div className='info'>
           <Text className='font-semibold' big>
             GITHUB
           </Text>

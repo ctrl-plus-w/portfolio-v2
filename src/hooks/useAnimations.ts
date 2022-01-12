@@ -103,7 +103,7 @@ const useAnimations = (loaded: boolean, cb: () => void): void => {
     let contactMeSectionTl = gsap.timeline({
       scrollTrigger: {
         trigger: '#contact-me',
-        start: 'center bottom',
+        start: 'bottom bottom',
         toggleActions: 'restart none none reverse',
       },
     });
@@ -112,7 +112,9 @@ const useAnimations = (loaded: boolean, cb: () => void): void => {
       .addLabel('start')
       .fromTo('#contact-me .title', { y: 20, opacity: 0 }, { y: 0, opacity: 1 }, 'start')
       .from('#contact-me .title + .separator', { width: 0 }, 'start')
-      .fromTo('#contact-me .body', { y: 20, opacity: 0 }, { y: 0, opacity: 1 }, 'start');
+      .fromTo('#contact-me .form-control', { y: 20, opacity: 0 }, { y: 0, opacity: 1 }, 'start')
+      .fromTo('#contact-me .info', { y: 20, opacity: 0 }, { y: 0, opacity: 1 }, 'start')
+      .fromTo('#contact-me button[type="submit"]', { y: 20, opacity: 0 }, { y: 0, opacity: 1 }, 'start');
 
     return () => {
       heroSectionTl.kill();
