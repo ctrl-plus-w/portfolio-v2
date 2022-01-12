@@ -28,6 +28,13 @@ const Home: NextPage = () => {
 
   useEffect(() => window.scrollTo({ top: 0 }), []);
 
+  const scrollToContactForm = () => {
+    const contactMeSection = document.querySelector('#contact-me');
+    const offsetTop = contactMeSection?.getBoundingClientRect().top;
+
+    if (offsetTop) window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+  };
+
   useSmoothScroll(container);
 
   useAnimations(loaded, () => {
@@ -64,7 +71,7 @@ const Home: NextPage = () => {
             <Sparkles /> your business
           </Text>
 
-          <TalkButton htmlId='contactBtn' className='mt-12' onClick={() => alert()} />
+          <TalkButton htmlId='contactBtn' className='mt-12' onClick={scrollToContactForm} />
 
           <Text htmlId='credit' className='mt-auto'>
             © 2022 Lukas Laudrain
