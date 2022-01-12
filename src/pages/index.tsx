@@ -22,13 +22,19 @@ import { CARDS } from '@constant/CARDS';
 const Home: NextPage = () => {
   const [loaded, setLoaded] = useState(false);
 
+  const eventBlocker = useRef<HTMLDivElement>(null);
   const container = useRef<HTMLDivElement>(null);
 
   useEffect(() => window.scrollTo({ top: 0 }), []);
 
   useSmoothScroll(container);
 
-  useAnimations(loaded, () => setLoaded(true));
+  useAnimations(loaded, () => {
+    setLoaded(true);
+
+    // Remove the event blocker (hover, click ...)
+    if (eventBlocker.current) eventBlocker.current.style.display = 'none';
+  });
 
   return (
     <div className='fixed' ref={container}>
@@ -36,6 +42,9 @@ const Home: NextPage = () => {
       <Head>
         <title>Lukas Laudrain</title>
       </Head>
+
+      {/* EVENT BLOCK */}
+      <div ref={eventBlocker} className='fixed z-[9999] top-0 left-0 w-screen h-screen'></div>
 
       {/* ---------- LINES ----------------- */}
       <BackgroundLine width='50%' id={1} className='absolute top-0 left-0' htmlId='line1' />
