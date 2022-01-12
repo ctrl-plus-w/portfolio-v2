@@ -28,12 +28,28 @@ const ContactForm = ({ className }: IProps) => {
     <div className='flex flex-row gap-32'>
       <form onSubmit={handleSubmit} className={clsx(['flex flex-col gap-8', className])}>
         <div className='flex flex-row gap-16'>
-          <Input value={firstName} setValue={setFirstName} name='firstName' placeholder="What's your name ?" label='First Name' className='w-64' />
+          <Input
+            value={firstName}
+            setValue={setFirstName}
+            name='firstName'
+            placeholder="What's your name ?"
+            label='First Name'
+            className='w-64'
+            required
+          />
 
-          <Input value={lastName} setValue={setLastName} name='lastName' placeholder="What's your surname ?" label='Last Name' className='w-64' />
+          <Input
+            value={lastName}
+            setValue={setLastName}
+            name='lastName'
+            placeholder="What's your surname ?"
+            label='Last Name'
+            className='w-64'
+            required
+          />
         </div>
 
-        <Input value={email} setValue={setEmail} name='email' placeholder='How I can contact you ?' label='Email' className='w-64' />
+        <Input value={email} setValue={setEmail} name='email' placeholder='How I can contact you ?' label='Email' className='w-64' required />
 
         <Input
           value={message}
@@ -43,6 +59,7 @@ const ContactForm = ({ className }: IProps) => {
           label='Message'
           className='w-[36rem]'
           textarea
+          required
         />
 
         <TalkButton htmlType='submit' onClick={() => undefined} />

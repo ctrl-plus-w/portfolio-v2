@@ -7,7 +7,8 @@ import Text from '@element/Text';
 
 interface IProps {
   label: string;
-  maxLength?: boolean;
+  maxLength?: number;
+  required?: boolean;
 
   value: string;
   setValue: Dispatch<SetStateAction<string>>;
@@ -20,14 +21,25 @@ interface IProps {
   textarea?: boolean;
 }
 
-const Input = ({ label, name, setValue, value, className, htmlId, maxLength, textarea, placeholder }: IProps) => {
+const Input = ({ label, name, setValue, value, className, htmlId, maxLength, textarea, placeholder, required }: IProps) => {
   const handleChange = (event: ChangeEvent) => {
     if (event.target instanceof HTMLInputElement) setValue(event.target.value);
   };
 
   return (
     <label htmlFor={name} className={clsx(['border-b border-beige', className])} id={htmlId}>
-      <Text small>{label.toUpperCase()}</Text>
+      <div className='flex justify-between w-full'>
+        <Text small>
+          {label.toUpperCase()}
+          {required && <span className='text-red-800'> *</span>}
+        </Text>
+
+        {maxLength && (
+          <Text small>
+            {value.length} / {maxLength}
+          </Text>
+        )}
+      </div>
 
       {textarea ? (
         <textarea
@@ -35,6 +47,7 @@ const Input = ({ label, name, setValue, value, className, htmlId, maxLength, tex
           name={name}
           placeholder={placeholder}
           onChange={handleChange}
+          maxLength={maxLength}
         >
           {value}
         </textarea>
@@ -46,6 +59,7 @@ const Input = ({ label, name, setValue, value, className, htmlId, maxLength, tex
           placeholder={placeholder}
           value={value}
           onChange={handleChange}
+          maxLength={maxLength}
         />
       )}
     </label>
