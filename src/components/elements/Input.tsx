@@ -23,7 +23,7 @@ interface IProps {
 
 const Input = ({ label, name, setValue, value, className, htmlId, maxLength, textarea, placeholder, required }: IProps) => {
   const handleChange = (event: ChangeEvent) => {
-    if (event.target instanceof HTMLInputElement) setValue(event.target.value);
+    if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) setValue(event.target.value);
   };
 
   return (
@@ -48,9 +48,8 @@ const Input = ({ label, name, setValue, value, className, htmlId, maxLength, tex
           placeholder={placeholder}
           onChange={handleChange}
           maxLength={maxLength}
-        >
-          {value}
-        </textarea>
+          value={value}
+        />
       ) : (
         <input
           type='text'
