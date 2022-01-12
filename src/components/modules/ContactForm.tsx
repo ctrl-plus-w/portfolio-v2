@@ -18,10 +18,10 @@ interface IProps {
 }
 
 const ContactForm = ({ className }: IProps) => {
-  const [firstName, setFirstName] = useState('Lukas');
-  const [lastName, setLastName] = useState('Laudrain');
-  const [email, setEmail] = useState('lukas.ldrn@gmail.com');
-  const [message, setMessage] = useState('Hello !');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
   const validationScreen = createRef<HTMLDivElement>();
   const container = createRef<HTMLDivElement>();
