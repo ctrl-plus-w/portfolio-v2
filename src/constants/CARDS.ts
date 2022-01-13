@@ -1,6 +1,6 @@
 export const CARDS: ICard[] = [
   {
-    title: 'SCHOOL QUIZ PROJECT',
+    title: 'SCHOOL QUIZ',
     body: 'A project I was inspired at high school. The goal is to make easy for the professors to test the students online.',
 
     htmlId: 'card1',
@@ -12,7 +12,7 @@ export const CARDS: ICard[] = [
     link: 'https://github.com/ctrl-plus-w/school-quiz-client',
   },
   {
-    title: 'CODE VALIDATOR PROJECT',
+    title: 'CODE VALIDATOR',
     body: 'The purpose of this application is to make easy for the professors to evaluation python programs given by their students.',
 
     htmlId: 'card2',
@@ -24,7 +24,7 @@ export const CARDS: ICard[] = [
     link: 'https://github.com/ctrl-plus-w/code-validator-client',
   },
   {
-    title: 'SCHOOL SCHEDULE PROJECT',
+    title: 'SCHOOL SCHEDULE',
     body: 'This is the first big project I made. The aim of this web app was to organize the online clasrooms of my high school during the lockdown.',
 
     htmlId: 'card3',
