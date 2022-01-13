@@ -1,6 +1,6 @@
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,8 +19,8 @@ const useAnimations = (loaded: boolean, cb: () => void): void => {
       .fromTo(
         '#line1 > path, #line2 > path',
         {
-          strokeDasharray: '1000px',
-          strokeDashoffset: '1000px',
+          strokeDasharray: '2000px',
+          strokeDashoffset: '2000px',
           opacity: 1,
         },
         {
@@ -108,7 +108,7 @@ const useAnimations = (loaded: boolean, cb: () => void): void => {
     let contactMeSectionTl = gsap.timeline({
       scrollTrigger: {
         trigger: '#contact-me',
-        start: 'bottom bottom',
+        start: 'center bottom',
         toggleActions: 'restart none none reverse',
       },
     });
