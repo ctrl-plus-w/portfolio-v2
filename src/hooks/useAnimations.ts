@@ -4,19 +4,20 @@ import { gsap } from 'gsap';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const useAnimations = (loaded: boolean, cb: () => void): void => {
+const useAnimations = (loaded: boolean, isDesktop: boolean, cb: () => void): void => {
   useEffect(() => {
     if (!cb || loaded) return;
 
     let heroSectionTl = gsap.timeline({ delay: 1, paused: true });
 
     // ------- UPDATE THE BACKGROUND LINES -------
-    heroSectionTl
-      .to('.main', {
-        opacity: 1,
-        duration: 0,
-      })
-      .fromTo(
+    heroSectionTl.to('.main', {
+      opacity: 1,
+      duration: 0,
+    });
+
+    if (isDesktop) {
+      heroSectionTl.fromTo(
         '#line1 > path, #line2 > path',
         {
           strokeDasharray: '2000px',
@@ -29,6 +30,7 @@ const useAnimations = (loaded: boolean, cb: () => void): void => {
           duration: 1.5,
         }
       );
+    }
 
     // ------- UPDATE THE HERO SECTION TEXT -------
     heroSectionTl.addLabel('wave1', '>');
@@ -78,7 +80,7 @@ const useAnimations = (loaded: boolean, cb: () => void): void => {
     let aboutMeSectionTl = gsap.timeline({
       scrollTrigger: {
         trigger: '#about-me',
-        start: 'bottom bottom',
+        start: isDesktop ? 'bottom bottom' : '25% bottom',
         toggleActions: 'restart none none reverse',
       },
     });
@@ -93,7 +95,7 @@ const useAnimations = (loaded: boolean, cb: () => void): void => {
     let projectsSectionTl = gsap.timeline({
       scrollTrigger: {
         trigger: '#projects',
-        start: 'bottom bottom',
+        start: isDesktop ? 'bottom bottom' : '25% bottom',
         toggleActions: 'restart none none reverse',
       },
     });
@@ -108,7 +110,7 @@ const useAnimations = (loaded: boolean, cb: () => void): void => {
     let contactMeSectionTl = gsap.timeline({
       scrollTrigger: {
         trigger: '#contact-me',
-        start: 'center bottom',
+        start: isDesktop ? 'center bottom' : '25% bottom',
         toggleActions: 'restart none none reverse',
       },
     });

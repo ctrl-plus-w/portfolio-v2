@@ -5,7 +5,7 @@ import type { RefObject } from 'react';
 import { lerp } from '@util/animation.utils';
 import { px } from '@util/string.util';
 
-const useSmoothScroll = (container: RefObject<HTMLDivElement>) => {
+const useSmoothScroll = (enabled: boolean, container: RefObject<HTMLDivElement>) => {
   useEffect(() => {
     if (!container.current) return;
 
@@ -23,8 +23,12 @@ const useSmoothScroll = (container: RefObject<HTMLDivElement>) => {
 
     // Main render function
     const render = () => {
-      // Update the value with linear interpolation
-      scrollY = lerp(scrollY || window.scrollY, window.scrollY, 0.1);
+      if (enabled) {
+        // Update the value with linear interpolation
+        scrollY = lerp(scrollY || window.scrollY, window.scrollY, 0.1);
+      } else {
+        scrollY = window.scrollY;
+      }
 
       if (container.current) {
         container.current.style.top = px(-scrollY);

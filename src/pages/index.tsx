@@ -36,9 +36,13 @@ const Home: NextPage = () => {
     if (offsetTop) window.scrollTo({ top: offsetTop, behavior: 'smooth' });
   };
 
-  useSmoothScroll(container);
+  const isXl = useMediaQuery('xl');
+  const is2Xl = useMediaQuery('2xl');
+  const isDesktop = isXl || is2Xl;
 
-  useAnimations(loaded, () => {
+  useSmoothScroll(isDesktop, container);
+
+  useAnimations(loaded, isDesktop, () => {
     setLoaded(true);
 
     // Remove the event blocker (hover, click ...)
