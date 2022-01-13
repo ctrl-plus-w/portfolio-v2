@@ -69,20 +69,20 @@ const ContactForm = ({ className }: IProps) => {
   };
 
   return (
-    <div ref={container} className={clsx(['relative flex flex-row gap-32', className])}>
-      <form onSubmit={handleSubmit} className='relative flex flex-col gap-8'>
+    <div ref={container} className={clsx(['relative flex flex-row flex-wrap-reverse xl:flex-nowrap gap-16 md:gap-32', className])}>
+      <form onSubmit={handleSubmit} className='relative flex flex-col w-full gap-8'>
         <div ref={validationScreen} className='z-40 absolute w-full h-full grid place-items-center pointer-events-none'>
           <Check width={38} className='text-beige opacity-0' />
         </div>
 
-        <div className={clsx(['flex flex-row gap-16'])}>
+        <div className={clsx(['flex flex-row flex-wrap gap-8 md:gap-16'])}>
           <Input
             value={firstName}
             setValue={setFirstName}
             name='firstName'
             placeholder="What's your name ?"
             label='First Name'
-            className='w-64'
+            className='w-full md:w-64'
             required
           />
 
@@ -92,12 +92,20 @@ const ContactForm = ({ className }: IProps) => {
             name='lastName'
             placeholder="What's your surname ?"
             label='Last Name'
-            className='w-64'
+            className='w-full md:w-64'
             required
           />
         </div>
 
-        <Input value={email} setValue={setEmail} name='email' placeholder='How I can contact you ?' label='Email' className='w-64' required />
+        <Input
+          value={email}
+          setValue={setEmail}
+          name='email'
+          placeholder='How I can contact you ?'
+          label='Email'
+          className='w-full md:w-64'
+          required
+        />
 
         <Input
           value={message}
@@ -105,7 +113,7 @@ const ContactForm = ({ className }: IProps) => {
           name='message'
           placeholder='What do you want to say ?'
           label='Message'
-          className='w-[36rem]'
+          className='w-full md:w-[36rem]'
           textarea
           required
         />

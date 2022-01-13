@@ -17,6 +17,7 @@ import Sparkles from '@icon/Sparkles';
 
 import useSmoothScroll from '@hook/useSmoothScroll';
 import useAnimations from '@hook/useAnimations';
+import useMediaQuery from '@hook/useMediaQuery';
 
 import { CARDS } from '@constant/CARDS';
 
@@ -45,7 +46,7 @@ const Home: NextPage = () => {
   });
 
   return (
-    <div className='main fixed opacity-0' ref={container}>
+    <div className='main fixed w-full opacity-0' ref={container}>
       {/* ---------- PAGE SETTINGS --------- */}
       <Head>
         <title>Lukas Laudrain</title>
@@ -55,18 +56,18 @@ const Home: NextPage = () => {
       <div ref={eventBlocker} className='fixed z-[9999] top-0 left-0 w-screen h-screen'></div>
 
       {/* ---------- LINES ----------------- */}
-      <BackgroundLine width='50%' id={1} className='absolute top-0 left-0' htmlId='line1' />
-      <BackgroundLine width='40%' id={2} className='absolute top-[20vh] right-0' htmlId='line2' />
+      <BackgroundLine width='50%' id={1} className='absolute top-0 left-0 invisible md:visible' htmlId='line1' />
+      <BackgroundLine width='50%' id={2} className='absolute top-[20vh] right-0 invisible md:visible' htmlId='line2' />
 
       {/* ---------- HERO SECTION ---------- */}
-      <section id='hero-section' className='flex flex-row h-screen px-32 py-16'>
-        <div className='flex flex-col items-start mt-32'>
+      <section id='hero-section' className='flex flex-row h-screen px-16 py-16 md:px-32 md:py-16'>
+        <div className='flex flex-col items-start mt-16 md:mt-28 lg:mt-32'>
           <Title htmlId='heading1' sep>
             Lukas Laudrain
           </Title>
 
           <Text htmlId='healine1' big>
-            I am the french <b>full-stack developer</b>,<br /> that will help you <Sparkles />
+            I am the french <b>full-stack developer</b> {useMediaQuery('sm') && <br />} that will help you <Sparkles />
             <b>step up</b>
             <Sparkles /> your business
           </Text>
@@ -81,8 +82,8 @@ const Home: NextPage = () => {
         <Cards loaded={loaded} />
       </section>
 
-      <section id='about-me' className='flex flex-row px-32 my-32 gap-4 '>
-        <div className='flex flex-col w-[calc(4/7*100%)]'>
+      <section id='about-me' className='flex flex-row flex-wrap lg:flex-nowrap px-16 py-16 md:px-32 md:my-32 gap-16 '>
+        <div className='flex flex-col w-full lg:w-[calc(4/7*100%)]'>
           <Title className='title' sep>
             Who am I ?
           </Title>
@@ -101,7 +102,7 @@ const Home: NextPage = () => {
           </Text>
         </div>
 
-        <div className='flex flex-col w-[calc(3/7*100%)]'>
+        <div className='flex flex-col w-full lg:w-[calc(3/7*100%)]'>
           <Title className='title' sep>
             My stack
           </Title>
@@ -120,19 +121,19 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      <section id='projects' className='flex flex-col px-32 my-32'>
+      <section id='projects' className='flex flex-col px-16 my-16 md:px-32 md:my-32 '>
         <Title className='title' sep>
           Selected projects
         </Title>
 
-        <div className='cards flex flex-row gap-16'>
+        <div className='cards flex flex-row flex-wrap gap-16'>
           {CARDS.map(({ title, body, link }) => {
             return <Card {...{ title, body, link }} key={title} icons />;
           })}
         </div>
       </section>
 
-      <section id='contact-me' className='flex flex-col px-32 mt-16 mb-32'>
+      <section id='contact-me' className='flex flex-col px-16 mt-16 mb-32 md:px-32 md:mt-16 '>
         <Title className='title' sep>
           Contact me
         </Title>

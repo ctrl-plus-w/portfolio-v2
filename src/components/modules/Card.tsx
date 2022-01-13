@@ -126,7 +126,7 @@ const Card = forwardRef(
 
     return (
       <div
-        className={clsx(`flex flex-col gap-[18px] p-6 rounded-[4px] font-mono w-96 max-w-sm bg-[${backgroundColor}] cursor-pointer`, className)}
+        className={clsx(`flex flex-col gap-[18px] p-6 rounded-[4px] font-mono w-full md:max-w-sm bg-[${backgroundColor}] cursor-pointer`, className)}
         onClick={handleClick}
         id={htmlId}
         ref={getRef}
@@ -137,7 +137,7 @@ const Card = forwardRef(
             <Github height={24} />
           </div>
         )}
-        <h2 className={`font-mono font-medium text-base text-[${titleColor}]`}>{title}</h2>
+        <h2 className={`font-mono font-medium text-base text-[${titleColor}] whitespace-nowrap overflow-hidden overflow-ellipsis`}>{title}</h2>
         <div className={`w-10 h-[2px] bg-[${titleColor}]`}></div>
         <p className={`font-mono font-normal text-[${bodyColor}]`}>{body}</p>
       </div>

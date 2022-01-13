@@ -11,6 +11,7 @@ import ArrowLeft from '@icon/ArrowLeft';
 import ArrowRight from '@icon/ArrowRight';
 
 import { CARDS } from '@constant/CARDS';
+import clsx from 'clsx';
 
 type CardIndexes = 1 | 2 | 3;
 
@@ -120,7 +121,7 @@ const Cards = ({ loaded }: IProps) => {
   };
 
   return (
-    <div className='relative flex flex-col w-full items-center justify-center gap-5 outline-1' id='cards'>
+    <div className='relative flex-col w-2/3 items-center justify-center gap-5 outline-1 hidden lg:flex' id='cards'>
       <div className='buttons absolute-center flex gap-[40rem]'>
         <button className='p-6' onClick={() => updateCard(getPreviousCard(activeCard))}>
           <ArrowLeft height={24} />

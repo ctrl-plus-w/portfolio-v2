@@ -4,10 +4,12 @@ import type { AppProps } from 'next/app';
 
 import Cursor from '@element/Cursor';
 
+import useMediaQuery from '@hook/useMediaQuery';
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Cursor />
+      {useMediaQuery('xl') && <Cursor />}
       <Component {...pageProps} />
     </>
   );
