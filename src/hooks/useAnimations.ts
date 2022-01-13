@@ -11,19 +11,24 @@ const useAnimations = (loaded: boolean, cb: () => void): void => {
     let heroSectionTl = gsap.timeline({ delay: 1, paused: true });
 
     // ------- UPDATE THE BACKGROUND LINES -------
-    heroSectionTl.fromTo(
-      '#line1 > path, #line2 > path',
-      {
-        strokeDasharray: '1000px',
-        strokeDashoffset: '1000px',
+    heroSectionTl
+      .to('.main', {
         opacity: 1,
-      },
-      {
-        strokeDashoffset: '0',
-        opacity: 0.02,
-        duration: 1.5,
-      }
-    );
+        duration: 0,
+      })
+      .fromTo(
+        '#line1 > path, #line2 > path',
+        {
+          strokeDasharray: '1000px',
+          strokeDashoffset: '1000px',
+          opacity: 1,
+        },
+        {
+          strokeDashoffset: '0',
+          opacity: 0.02,
+          duration: 1.5,
+        }
+      );
 
     // ------- UPDATE THE HERO SECTION TEXT -------
     heroSectionTl.addLabel('wave1', '>');

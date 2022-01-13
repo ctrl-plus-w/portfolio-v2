@@ -45,7 +45,7 @@ const Home: NextPage = () => {
   });
 
   return (
-    <div className='fixed' ref={container}>
+    <div className='main fixed opacity-0' ref={container}>
       {/* ---------- PAGE SETTINGS --------- */}
       <Head>
         <title>Lukas Laudrain</title>
