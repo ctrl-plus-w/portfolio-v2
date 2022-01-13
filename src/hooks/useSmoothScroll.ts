@@ -9,11 +9,17 @@ const useSmoothScroll = (container: RefObject<HTMLDivElement>) => {
   useEffect(() => {
     if (!container.current) return;
 
-    // Make the body the same height as the container to have the scroll bar
-    document.body.style.height = px(container.current.clientHeight);
-
     let animationFrame: number;
     let scrollY: number;
+
+    const onResize = () => {
+      if (!container.current) return;
+
+      // Make the body the same height as the container to have the scroll bar
+      document.body.style.height = px(container.current.clientHeight);
+    };
+
+    onResize();
 
     // Main render function
     const render = () => {
@@ -29,8 +35,11 @@ const useSmoothScroll = (container: RefObject<HTMLDivElement>) => {
 
     animationFrame = window.requestAnimationFrame(render);
 
+    window.addEventListener('resize', onResize);
+
     return () => {
       window.cancelAnimationFrame(animationFrame);
+      window.removeEventListener('resize', onResize);
     };
   }, [container]);
 };
