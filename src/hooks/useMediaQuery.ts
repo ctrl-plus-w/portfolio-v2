@@ -15,7 +15,6 @@ const useMediaQuery = (query: QueryType): boolean => {
 
   useEffect(() => {
     const media = window.matchMedia(queries[query]);
-    console.log(queries[query]);
 
     if (media.matches !== matches) {
       setMatches(media.matches);
