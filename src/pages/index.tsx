@@ -96,10 +96,9 @@ const Home: NextPage = () => {
             Hey, my name is Lukas. I’m a French student.
             <br />
             <br />
-            I’m a developer, designer and a challenge lover. I started programming around 2018. I am currently in high school where I have made most
-            of my biggest project, so that makes me a self-taught developer. I always loved computer sciences and challenge solving. During my
-            learning path, I went from static html and css pages to complex SaaS applications. I now know many technologies and am learning many
-            others.
+            I’m a developer, designer and a challenge lover. I started programming around 2018. I am currently studying cybersecurity. I am a
+            self-taught since many years now. I always loved computer sciences and challenge solving. During my learning path, I went from static html
+            and css pages to complex SaaS applications. I now know many technologies and am learning many others.
             <br />
             <br />
             By making complex projects, I acquired some experience and I now focus on making clean code with a scalable structure.
